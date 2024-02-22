@@ -100,4 +100,36 @@ class Api extends CI_Controller {
         echo json_encode($response);
     }
 
+
+    /**
+     * recibe un GET consulta detalle de un lote , parametro es el periodo
+     */
+    public function payments_resume() {
+        $period =$this->input->get('period');
+        if(!$period) { 
+            $period = date('Y-m').'-01';
+        } else {
+            $period .= '-01';
+        }
+        $payments = $this->payment_model->get_resume_payments($period);
+        $response = array(
+            'period' => $period,
+            'stats' => $payments
+        );
+      
+        echo json_encode($response);
+    }
+
+      /**
+     * recibe un GET consulta detalle de un lote , parametro es el periodo
+     */
+    public function active_subscriptions() {
+        
+        $active_subscriptions = $this->subscription_model->get_all_actives();
+        $response = array(
+            'subscriptions' => $active_subscriptions
+        );
+      
+        echo json_encode($response);
+    }
 }

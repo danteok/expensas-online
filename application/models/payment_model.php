@@ -27,4 +27,11 @@ class Payment_model extends CI_Model {
         return $query->result();
     }
 
+    public function get_resume_payments($period) {
+        $query = $this->db->select(" SUM(amount) total_amount, count(id) qantity_payments " )->get_where('payments', array('period' => $period));
+
+
+        return $query->result();
+    }
+
 }

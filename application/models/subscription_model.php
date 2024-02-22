@@ -23,4 +23,5 @@ class Subscription_model extends CI_Model {
         // Retorna el ID del último registro insertado
         return $this->db->insert_id();
     }
+
 }
